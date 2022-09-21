@@ -5,6 +5,7 @@ from discord.ext import commands
 import discord
 from discord.utils import get
 import requests
+import filenames
 
 intents = discord.Intents.default()
 intents.members = True
@@ -128,6 +129,16 @@ async def poll(ctx, arg):
     await ctx.send(f'👎: {len([reaction for reaction in message.reactions if reaction.emoji == "👎"]) - 1}')
     await message.delete()
 
+
+@bot.command()
+async def rire(ctx):
+    await ctx.send('https://www.youtube.com/watch?v=dfiPBgEQNp4')
+
+
+@bot.command()
+async def hoppy(ctx):
+    filename = random.choice(filenames.filenames)
+    await ctx.send(f'https://hoppythebest.s3.eu-west-3.amazonaws.com/{filename}')
 
 token = getenv('BOT_TOKEN')
 bot.run(token)  # Starts the bot
